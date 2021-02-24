@@ -9,7 +9,7 @@ export default class AlterProviderFildToUserId1613705825701 implements Migration
     await queryRunner.addColumn(
       'appointments',
       new TableColumn({
-        name: 'userId',
+        name: 'providerId',
         type: 'uuid',
       }),
     );
@@ -18,7 +18,7 @@ export default class AlterProviderFildToUserId1613705825701 implements Migration
       'appointments',
       new TableForeignKey({
         name: 'AppointmentsUser',
-        columnNames: ['userId'],
+        columnNames: ['providerId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
         onDelete: 'NO ACTION',
@@ -30,7 +30,7 @@ export default class AlterProviderFildToUserId1613705825701 implements Migration
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('appointments', 'AppointmentsUser');
 
-    await queryRunner.dropColumn('appointments', 'userId');
+    await queryRunner.dropColumn('appointments', 'providerId');
 
     await queryRunner.addColumn('appointments', new TableColumn({
       name: 'provider',
