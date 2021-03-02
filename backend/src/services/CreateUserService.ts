@@ -17,7 +17,7 @@ class CreateUserService {
     });
 
     if (checkUserExistis) {
-      throw Error('Email address already used!');
+      throw new Error('Email address already used!');
     }
 
     const user = userRepository.create({
